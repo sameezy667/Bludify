@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
-import { PricingTier } from '../types';
+import { PricingTier } from '@/types';
 
 const tiers: PricingTier[] = [
     {

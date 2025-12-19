@@ -1,5 +1,7 @@
-import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+'use client';
+
+import React, { useRef, useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { ArrowRight, ShieldCheck, Battery, ScanLine, Check, Lock, Wifi } from 'lucide-react';
 import { Canvas, useFrame } from '@react-three/fiber';
@@ -347,6 +349,16 @@ const VerificationFlow: React.FC = () => {
 // --- Component: Hero Section ---
 
 const Hero: React.FC = () => {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <section className="relative min-h-screen pt-32 pb-20 flex items-center overflow-hidden transition-colors duration-300">
             {/* Vignette - Smooth blend into #F2F4F6 */}
@@ -390,14 +402,14 @@ const Hero: React.FC = () => {
                         className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                     >
                         <Link 
-                            to="/marketplace"
+                            href="/marketplace"
                             className="px-8 py-3 bg-neon hover:bg-neon/90 text-[#050505] font-semibold rounded-full transition-all flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(0,224,143,0.2)] cursor-pointer"
                         >
                             Browse Marketplace
                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </Link>
                         <Link 
-                            to="/sell-device"
+                            href="/sell-device"
                             className="px-8 py-3 bg-white dark:bg-transparent border border-gray-200 dark:border-surface-3 hover:border-neon dark:hover:border-white text-slate-900 dark:text-white font-medium rounded-full transition-all shadow-sm dark:shadow-none cursor-pointer"
                         >
                             Start Selling

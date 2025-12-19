@@ -27,8 +27,10 @@
  * TODO: Add newsletter signup section
  * TODO: Create and link to legal pages (Terms, Privacy, etc.)
  */
+'use client';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ShieldCheck, Twitter, Instagram, Linkedin, Github } from 'lucide-react';
 
 /**
@@ -62,10 +64,10 @@ const Footer: React.FC = () => {
                     <div>
                         <h4 className="text-gray-900 dark:text-white font-medium mb-6 transition-colors">Platform</h4>
                         <ul className="space-y-4 text-sm text-gray-600 dark:text-text-muted">
-                            <li><Link to="/marketplace" className="hover:text-neon transition-colors cursor-pointer">Marketplace</Link></li>
-                            <li><Link to="/sell-device" className="hover:text-neon transition-colors cursor-pointer">Sell Device</Link></li>
-                            <li><Link to="/verification" className="hover:text-neon transition-colors cursor-pointer">Verification Standards</Link></li>
-                            <li><Link to="/sell-device" className="hover:text-neon transition-colors cursor-pointer">Pricing</Link></li>
+                            <li><Link href="/marketplace" className="hover:text-neon transition-colors cursor-pointer">Marketplace</Link></li>
+                            <li><Link href="/sell-device" className="hover:text-neon transition-colors cursor-pointer">Sell Device</Link></li>
+                            <li><Link href="/verification" className="hover:text-neon transition-colors cursor-pointer">Verification Standards</Link></li>
+                            <li><Link href="/sell-device" className="hover:text-neon transition-colors cursor-pointer">Pricing</Link></li>
                         </ul>
                     </div>
 

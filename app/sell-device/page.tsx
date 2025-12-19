@@ -1,36 +1,17 @@
 /**
- * SellDevice.tsx
+ * app/sell-device/page.tsx
  * 
  * Seller onboarding and information page.
  * Guides potential sellers through the process of listing devices on the platform.
- * 
- * Page Structure:
- * - Hero section with title and value proposition
- * - 4-step selling process visualization
- * - Feature benefits grid
- * - Integrated PricingTable component showing seller tier options
- * 
- * Dependencies:
- * - framer-motion: Section entrance animations
- * - lucide-react: Icon components for steps and features
- * - ../components/PricingTable: Pricing tier display
- * 
- * NOTE: All monetary values should come from configuration
- * TODO: Add FAQ section for common seller questions
- * TODO: Implement seller registration flow
- * TODO: Connect to backend for actual device listing
  */
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Package, ShieldCheck, DollarSign, Clock, CheckCircle2, Upload } from 'lucide-react';
-import PricingTable from '../components/PricingTable';
+import PricingTable from '@/components/PricingTable';
 
-/**
- * Seller onboarding page component.
- * 
- * @returns {JSX.Element} The complete sell device page layout
- */
-const SellDevice: React.FC = () => {
+export default function SellDevice() {
     const steps = [
         {
             icon: Upload,
@@ -189,6 +170,4 @@ const SellDevice: React.FC = () => {
             </div>
         </section>
     );
-};
-
-export default SellDevice;
+}

@@ -1,5 +1,5 @@
 /**
- * Navbar.tsx
+ * components/Navbar.tsx (Next.js version)
  * 
  * Global navigation component with floating glassmorphism design.
  * Features:
@@ -9,29 +9,11 @@
  * - Dark/light theme toggle with system preference sync
  * - Login button with router navigation
  * - Responsive design with mobile menu support
- * 
- * Layout:
- * - Fixed positioning at top of viewport with 24px margin
- * - Centered horizontally with max-width constraint
- * - Glassmorphism effect: backdrop-blur with semi-transparent background
- * - Rounded-full pill shape with border styling
- * 
- * State Management:
- * - isFocused: Controls search bar width expansion on focus
- * - isDark: Syncs with document.documentElement dark mode class
- * 
- * Dependencies:
- * - react-router-dom: Link component for SPA navigation
- * - lucide-react: Icon components (ShieldCheck, Search, Moon, Sun)
- * - framer-motion: Entrance animation
- * 
- * NOTE: Theme preference persists in localStorage via toggleTheme function
- * TODO: Add mobile hamburger menu for small screens
- * TODO: Implement keyboard shortcuts for search (Cmd+K)
- * FIXME: Search functionality not yet connected to actual search logic
  */
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { ShieldCheck, Search, Moon, Sun } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -45,18 +27,16 @@ const Navbar: React.FC = () => {
     const [isFocused, setIsFocused] = useState<boolean>(false);
     
     // Dark mode state synced with document root element
-    const [isDark, setIsDark] = useState<boolean>(true);
+    const [isDark, setIsDark] = useState<boolean>(false);
+    const [mounted, setMounted] = useState(false);
 
     /**
      * Synchronizes component state with DOM dark mode class on mount.
      * Checks document.documentElement for 'dark' class to maintain consistency.
      */
     useEffect(() => {
-        if (document.documentElement.classList.contains('dark')) {
-            setIsDark(true);
-        } else {
-            setIsDark(false);
-        }
+        setMounted(true);
+        setIsDark(document.documentElement.classList.contains('dark'));
     }, []);
 
     const toggleTheme = () => {
@@ -70,6 +50,11 @@ const Navbar: React.FC = () => {
         }
     };
 
+    // Prevent hydration mismatch by not rendering until mounted
+    if (!mounted) {
+        return null;
+    }
+
     return (
         <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
             <motion.nav
@@ -79,7 +64,7 @@ const Navbar: React.FC = () => {
                 className="w-full max-w-5xl h-16 bg-white/70 dark:bg-[#050505]/90 backdrop-blur-xl border border-white/20 dark:border-surface-3 rounded-full flex items-center justify-between px-2 pl-6 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-2xl pointer-events-auto transition-colors duration-300"
             >
                 {/* Logo */}
-                <Link to="/" className="flex items-center gap-3 cursor-pointer group mr-8">
+                <Link href="/" className="flex items-center gap-3 cursor-pointer group mr-8">
                     <div className="bg-neon flex items-center justify-center w-8 h-8 rounded-lg shadow-[0_0_15px_rgba(0,224,143,0.3)]">
                         <ShieldCheck className="w-5 h-5 text-black" strokeWidth={2.5} />
                     </div>
@@ -89,19 +74,19 @@ const Navbar: React.FC = () => {
                 {/* Centered Links - Desktop */}
                 <div className="hidden md:flex items-center gap-1">
                     <Link 
-                        to="/marketplace"
+                        href="/marketplace"
                         className="px-5 py-2 text-sm font-medium text-zinc-600 dark:text-text-muted hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-black/5 dark:hover:bg-surface-2 whitespace-nowrap"
                     >
                         Marketplace
                     </Link>
                     <Link 
-                        to="/sell-device"
+                        href="/sell-device"
                         className="px-5 py-2 text-sm font-medium text-zinc-600 dark:text-text-muted hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-black/5 dark:hover:bg-surface-2 whitespace-nowrap"
                     >
                         Sell Device
                     </Link>
                     <Link 
-                        to="/verification"
+                        href="/verification"
                         className="px-5 py-2 text-sm font-medium text-zinc-600 dark:text-text-muted hover:text-black dark:hover:text-white transition-colors rounded-full hover:bg-black/5 dark:hover:bg-surface-2 whitespace-nowrap"
                     >
                         Verification
@@ -129,7 +114,7 @@ const Navbar: React.FC = () => {
                     </button>
 
                     <Link 
-                        to="/login"
+                        href="/login"
                         className="px-6 py-2 rounded-full border border-black/5 dark:border-surface-3 hover:border-black dark:hover:border-white text-sm font-medium text-black dark:text-white transition-all bg-white dark:bg-[#0A0A0A] hover:bg-gray-100 dark:hover:bg-surface-3 shadow-sm dark:shadow-none whitespace-nowrap cursor-pointer inline-block"
                     >
                         Login

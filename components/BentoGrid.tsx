@@ -1,20 +1,30 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Battery, ShieldCheck, Zap, Package, Smartphone, Globe, Repeat, Check, Moon, Sun } from 'lucide-react';
 
 const BentoGrid: React.FC = () => {
     // Local state for toggle demonstration
-    const [isDark, setIsDark] = useState(true);
+    const [isDark, setIsDark] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    // Initialize theme on mount
+    useEffect(() => {
+        setMounted(true);
+        setIsDark(document.documentElement.classList.contains('dark'));
+    }, []);
 
     // Effect to toggle the global class for demonstration purposes
     useEffect(() => {
+        if (!mounted) return;
         const html = document.documentElement;
         if (isDark) {
             html.classList.add('dark');
         } else {
             html.classList.remove('dark');
         }
-    }, [isDark]);
+    }, [isDark, mounted]);
 
     return (
         <section className="py-24 transition-colors duration-300 bg-[#F2F4F6] dark:bg-[#030304] border-t border-black/5 dark:border-[#1F1F1F]">

@@ -1,51 +1,17 @@
 /**
- * Verification.tsx
+ * app/verification/page.tsx
  * 
  * Page explaining Bludify's verification standards and trust protocol.
  * Builds buyer confidence by transparently showing the verification process.
- * 
- * Page Structure:
- * - Hero section introducing verification importance
- * - 6 verification checkpoint categories with detailed descriptions
- * - Verification scoring system (Basic/Advanced/Premium tiers)
- * - Integrated ProtocolSection showing 3-step verification flow
- * 
- * Verification Checkpoints:
- * 1. Hardware Integrity: Physical condition and component authenticity
- * 2. Battery Health: Capacity testing and charge cycle analysis
- * 3. Connectivity: WiFi, Bluetooth, cellular, NFC functionality
- * 4. Sensor Suite: Camera, accelerometer, gyroscope, proximity sensors
- * 5. Authenticity: IMEI verification and OEM part validation
- * 6. Security: Activation lock, Find My Device status, data wipe confirmation
- * 
- * Scoring System:
- * - Basic (80-84): Essential checks passed, minor cosmetic issues
- * - Advanced (85-94): Comprehensive testing, good condition
- * - Premium (95-100): Flawless condition, all tests exceeded expectations
- * 
- * Dependencies:
- * - framer-motion: Stagger animations for checkpoint cards
- * - lucide-react: Icon components for each checkpoint category
- * - ../components/ProtocolSection: Visualization of verification workflow
- * 
- * NOTE: Checkpoint descriptions should be detailed enough for buyer confidence
- * TODO: Add video demonstration of verification process
- * TODO: Link to detailed verification methodology document
- * TODO: Show example verification reports
- * FIXME: Score ranges should come from backend configuration
  */
+'use client';
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Cpu, Battery, Wifi, Fingerprint, Shield, CheckCircle } from 'lucide-react';
-import ProtocolSection from '../components/ProtocolSection';
+import { ShieldCheck, Cpu, Battery, Wifi, Camera, Shield, Lock, CheckCircle2, XCircle } from 'lucide-react';
+import ProtocolSection from '@/components/ProtocolSection';
 
-/**
- * Verification standards page component.
- * Educates users on the comprehensive verification process.
- * 
- * @returns {JSX.Element} The complete verification page layout
- */
-const Verification: React.FC = () => {
+export default function Verification() {
     const checkpoints = [
         {
             icon: Cpu,
@@ -295,6 +261,4 @@ const Verification: React.FC = () => {
             </div>
         </section>
     );
-};
-
-export default Verification;
+}

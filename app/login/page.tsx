@@ -1,5 +1,5 @@
 /**
- * Login.tsx
+ * app/login/page.tsx
  * 
  * User authentication page with login and signup forms.
  * Features:
@@ -7,28 +7,14 @@
  * - Email and password input fields
  * - Conditional name field for signup
  * - Trust badges at bottom
- * 
- * Dependencies:
- * - framer-motion: Form entrance animations
- * - lucide-react: Icon components
- * 
- * TODO: Connect to authentication backend API
- * TODO: Add form validation with error messages
- * TODO: Implement password strength indicator
- * TODO: Add social login options
- * FIXME: Form submission handlers not implemented
  */
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, User, ShieldCheck } from 'lucide-react';
 
-/**
- * Authentication page component.
- * 
- * @returns {JSX.Element} The authentication page with form
- */
-const Login: React.FC = () => {
-    /** Toggle between login (true) and signup (false) modes */
+export default function Login() {
     const [isLogin, setIsLogin] = useState<boolean>(true);
 
     return (
@@ -161,6 +147,4 @@ const Login: React.FC = () => {
             </div>
         </section>
     );
-};
-
-export default Login;
+}

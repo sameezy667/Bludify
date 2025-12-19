@@ -1,5 +1,5 @@
 /**
- * Marketplace.tsx
+ * app/marketplace/page.tsx
  * 
  * Product browsing page with search, filtering, and grid layout.
  * Features:
@@ -8,48 +8,14 @@
  * - Category filter buttons (All, Phones, Laptops, Audio, Cameras, Wearables, Gaming)
  * - Product grid with responsive card layout
  * - Individual product cards with verification badges and hover effects
- * 
- * Data Structure:
- * - allProducts: Static array of Product objects with all marketplace items
- * - Each product includes: id, title, price, image, specs, condition, verified status, escrow status
- * 
- * State Management:
- * - searchQuery: Controls search input and filters products by title/specs
- * - selectedCategory: Filters products by category type
- * 
- * Product Card Features:
- * - Grayscale placeholder images (to be replaced with actual product images)
- * - Verification badge with ShieldCheck icon
- * - Escrow secured indicator
- * - Price display in INR (₹)
- * - Hover animation with scale transform
- * - Click navigation to product detail (TODO)
- * 
- * Dependencies:
- * - framer-motion: Card entrance animations and hover effects
- * - lucide-react: Icon components
- * - ../types: Product type definition
- * 
- * NOTE: Product images use placeholder service (picsum.photos)
- * TODO: Connect to backend API for dynamic product data
- * TODO: Implement pagination for large product lists
- * TODO: Add price range filter
- * TODO: Add sort options (price, date, condition)
- * TODO: Create individual product detail pages
- * FIXME: Category filter should be derived from product data, not hardcoded
  */
+'use client';
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ShieldCheck, ArrowUpRight, Search, SlidersHorizontal } from 'lucide-react';
-import { Product } from '../types';
+import { Product } from '@/types';
 
-/**
- * Static product data for marketplace.
- * In production, this should be fetched from a backend API.
- * Each product includes full details needed for card display and filtering.
- * 
- * @constant {Product[]} allProducts - Array of all available products
- */
 const allProducts: Product[] = [
     {
         id: "BLD-8829-XJ",
@@ -187,7 +153,7 @@ const ProductCard: React.FC<{ product: Product, index: number }> = ({ product, i
     </motion.div>
 );
 
-const Marketplace: React.FC = () => {
+export default function Marketplace() {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('All');
     
@@ -261,6 +227,4 @@ const Marketplace: React.FC = () => {
             </div>
         </section>
     );
-};
-
-export default Marketplace;
+}
